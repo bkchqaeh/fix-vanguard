@@ -17,12 +17,12 @@ if not is_admin():
     sys.exit(0)  #prevent duplicate execution
 else:
     print("Running with admin privileges.")
+    
     try:
         result = subprocess.run(["sc", "start", service_name], shell=True, check=True, capture_output=True, text=True)
         print(f"Service '{service_name}' started successfully.")
         print(result.stdout)
         time.sleep(3)
-
     except subprocess.CalledProcessError as e:
         print(f"Failed to start service '{service_name}': {e}")
         print(e.stderr)
